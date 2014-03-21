@@ -1,5 +1,6 @@
 package axel.io.base {
 	import io.axel.base.AxEntity;
+	import io.axel.base.AxRect;
 
 	public class AxEntityTest extends AxAwareTestCase {
 		private var entity:AxEntity;
@@ -133,6 +134,146 @@ package axel.io.base {
 			entity.width = 3;
 			entity.height = 4;
 			assertEquals("io.axel.base::AxEntity @ (1,2,3,4)", entity.toString());
+		}
+		
+		public function testAdvanceZeroVelocity():void {
+			entity = new AxEntity;
+			advance(1, entity);
+			assertTrue(entity.velocity.isZero());
+			assertEquals(0, entity.x);
+			assertEquals(0, entity.y);
+		}
+		
+		public function testAdvanceNonZeroVelocity():void {
+			entity = new AxEntity;
+			entity.velocity.x = 5;
+			entity.velocity.y = 10;
+			entity.velocity.a = 15;
+			advance(1, entity);
+			assertFalse(entity.velocity.isZero());
+			assertEquals(5, entity.x);
+			assertEquals(10, entity.y);
+			assertEquals(15, entity.angle);
+		}
+		
+		public function testAdvanceFloatNonZeroVelocity():void {
+			entity = new AxEntity;
+			entity.velocity.x = 5;
+			entity.velocity.y = 10;
+			entity.velocity.a = 15;
+			advance(0.1, entity);
+			assertFalse(entity.velocity.isZero());
+			assertEquals(0.5, entity.x);
+			assertEquals(1, entity.y);
+			assertEquals(1.5, entity.angle);
+		}
+		
+		public function testPvelocity():void {
+			entity = new AxEntity;
+			entity.velocity.x = 1;
+			entity.velocity.y = 2;
+			entity.velocity.a = 3;
+			assertEquals(0, entity.pvelocity.x);
+			assertEquals(0, entity.pvelocity.y);
+			assertEquals(0, entity.pvelocity.a);
+			advance(1, entity);
+			assertEquals(1, entity.pvelocity.x);
+			assertEquals(2, entity.pvelocity.y);
+			assertEquals(3, entity.pvelocity.a);
+		}
+		
+		public function testTouchingOnAdvance():void {
+			entity = new AxEntity;
+			assertEquals(AxEntity.NONE, entity.touching);
+			entity.touching = AxEntity.LEFT | AxEntity.RIGHT;
+			assertFalse(AxEntity.NONE == entity.touching);
+			advance(1, entity);
+			assertEquals(AxEntity.NONE, entity.touching);
+		}
+		
+		public function testTouchedOnAdvance():void {
+			entity = new AxEntity;
+			assertEquals(AxEntity.NONE, entity.touched);
+			entity.touching = AxEntity.LEFT | AxEntity.RIGHT;
+			assertEquals(AxEntity.NONE, entity.touched);
+			advance(1, entity);
+			assertEquals(AxEntity.LEFT | AxEntity.RIGHT, entity.touched);
+		}
+		
+		public function testParentMoveOnAdvance():void {
+			entity = new AxEntity;
+			var parent:AxEntity = new AxEntity(5, 5);
+			entity.setParent(parent);
+			parent.x = 10;
+			parent.y = 10;
+			assertEquals(5, entity.parentOffset.x);
+			assertEquals(5, entity.parentOffset.y);
+			advance(1, entity);
+			assertEquals(10, entity.parentOffset.x);
+			assertEquals(10, entity.parentOffset.y);
+		}
+		
+		public function testStationary():void {
+			entity = new AxEntity;
+			entity.velocity.x = 5;
+			entity.velocity.y = 10;
+			entity.stationary = true;
+			advance(1, entity);
+			assertFalse(entity.velocity.isZero());
+			assertEquals(0, entity.x);
+			assertEquals(0, entity.y);
+		}
+		
+		public function testAcceleration():void {
+			entity = new AxEntity;
+			entity.acceleration.x = 1;
+			entity.acceleration.y = 2;
+			entity.acceleration.a = 3;
+			advance(1, entity);
+			assertEquals(1, entity.velocity.x);
+			assertEquals(2, entity.velocity.y);
+			assertEquals(3, entity.velocity.a);
+		}
+		
+		public function testIntegralBasedPosition():void {
+			entity = new AxEntity;
+			entity.acceleration.x = 2;
+			entity.acceleration.y = 4;
+			assertEquals(0, entity.x);
+			assertEquals(0, entity.y);
+			assertEquals(0, entity.velocity.x);
+			assertEquals(0, entity.velocity.y);
+			advance(1, entity);
+			assertEquals(1, entity.x);
+			assertEquals(2, entity.y);
+			assertEquals(2, entity.velocity.x);
+			assertEquals(4, entity.velocity.y);
+			advance(1, entity);
+			assertEquals(4, entity.x);
+			assertEquals(8, entity.y);
+			assertEquals(4, entity.velocity.x);
+			assertEquals(8, entity.velocity.y);
+		}
+		
+		public function testWorldBounds():void {
+			entity = new AxEntity;
+			entity.width = 2;
+			entity.height = 2;
+			entity.worldBounds = new AxRect(0, 0, 10, 10);
+			entity.x = -5;
+			entity.y = -5;
+			assertEquals(-5, entity.x);
+			assertEquals(-5, entity.y);
+			advance(1, entity);
+			assertEquals(0, entity.x);
+			assertEquals(0, entity.y);
+			entity.x = 20;
+			entity.y = 20;
+			assertEquals(20, entity.x);
+			assertEquals(20, entity.y);
+			advance(1, entity);
+			assertEquals(8, entity.x);
+			assertEquals(8, entity.y);
 		}
 	}
 }
