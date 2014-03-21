@@ -2,6 +2,7 @@ package {
 	import asunit.framework.TestSuite;
 	
 	import axel.io.base.AxEntityTest;
+	import axel.io.base.AxGroupTest;
 	import axel.io.base.AxPointTest;
 	import axel.io.base.AxRectTest;
 	import axel.io.base.AxVectorTest;
@@ -19,7 +20,7 @@ package {
 			addTest(new AxRectTest);
 			addTest(new AxVectorTest);
 			addTest(new AxEntityTest);
-//			addTest(new AxGroupTest);
+			addTest(new AxGroupTest);
 			
 			// io.axel.pool
 			addTest(new AxPoolNodeTest);
