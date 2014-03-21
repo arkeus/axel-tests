@@ -23,6 +23,7 @@ package io.axel.pool {
 			assertEquals(Point, pool.objectClass);
 			assertEquals(0, pool.allocated.size);
 			assertEquals(0, pool.idle.size);
+			assertEquals(0, pool.size);
 		}
 		
 		public function testInitialization():void {
@@ -30,6 +31,7 @@ package io.axel.pool {
 			assertEquals(Point, pool.objectClass);
 			assertEquals(2, pool.allocated.size);
 			assertEquals(0, pool.idle.size);
+			assertEquals(2, pool.size);
 		}
 		
 		public function testAddAndRemove():void {
@@ -37,6 +39,7 @@ package io.axel.pool {
 			point = pool.remove();
 			assertEquals(0, pool.allocated.size);
 			assertEquals(1, pool.idle.size);
+			assertEquals(0, pool.size);
 			
 			assertNotNull(point);
 			assertEquals(0, point.x);
@@ -47,12 +50,14 @@ package io.axel.pool {
 			pool.add(point);
 			assertEquals(1, pool.allocated.size);
 			assertEquals(0, pool.idle.size);
+			assertEquals(1, pool.size);
 			
 			point = pool.remove();
 			assertEquals(0, pool.allocated.size);
 			assertEquals(1, pool.idle.size);
 			assertEquals(1, point.x);
 			assertEquals(2, point.y);
+			assertEquals(0, pool.size);
 		}
 		
 		public function testRemoveFromPreallocation():void {
@@ -60,11 +65,13 @@ package io.axel.pool {
 			assertEquals(Point, pool.objectClass);
 			assertEquals(4, pool.allocated.size);
 			assertEquals(0, pool.idle.size);
+			assertEquals(4, pool.size);
 			
 			pool.remove();
 			pool.remove();
 			assertEquals(2, pool.allocated.size);
 			assertEquals(2, pool.idle.size);
+			assertEquals(2, pool.size);
 		}
 		
 		public function testInvalidCast():void {
