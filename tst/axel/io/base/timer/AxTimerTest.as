@@ -28,5 +28,18 @@ package axel.io.base.timer {
 			timer = new AxTimer(1.2, null, 2, -1);
 			assertEquals(1.2, timer.timer);
 		}
+		
+		public function testPause():void {
+			timer = new AxTimer(1.2, null);
+			timer.pause();
+			assertFalse(timer.active);
+		}
+		
+		public function testPauseDead():void {
+			timer = new AxTimer(1.2, null);
+			timer.alive = false;
+			timer.pause();
+			assertTrue(timer.active);
+		}
 	}
 }
