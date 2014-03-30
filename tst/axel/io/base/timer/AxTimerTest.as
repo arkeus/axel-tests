@@ -49,5 +49,12 @@ package axel.io.base.timer {
 			timer.start();
 			assertTrue(timer.active);
 		}
+		
+		public function testStop():void {
+			timer = new AxTimer(1.2, null);
+			timer.stop();
+			assertFalse(timer.active);
+			assertFalse(timer.alive);
+		}
 	}
 }
