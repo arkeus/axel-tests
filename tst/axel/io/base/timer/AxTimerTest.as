@@ -50,6 +50,15 @@ package axel.io.base.timer {
 			assertTrue(timer.active);
 		}
 		
+		public function testStartDead():void {
+			timer = new AxTimer(1.2, null);
+			timer.pause();
+			assertFalse(timer.active);
+			timer.alive = false;
+			timer.start();
+			assertFalse(timer.active);
+		}
+		
 		public function testStop():void {
 			timer = new AxTimer(1.2, null);
 			timer.stop();
