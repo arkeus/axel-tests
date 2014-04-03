@@ -23,5 +23,14 @@ package axel.io.base.timer {
 			assertEquals(1, timerSet.timers[0].repeat);
 			assertNotNull(timerSet.timers[0].callback);
 		}
+		
+		public function testAddDefaults():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {});
+			assertEquals(1, timerSet.timers[0].delay);
+			assertEquals(1, timerSet.timers[0].timer);
+			assertEquals(1, timerSet.timers[0].repeat);
+			assertNotNull(timerSet.timers[0].callback);
+		}
 	}
 }
