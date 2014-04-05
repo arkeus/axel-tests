@@ -32,5 +32,86 @@ package axel.io.base.timer {
 			assertEquals(1, timerSet.timers[0].repeat);
 			assertNotNull(timerSet.timers[0].callback);
 		}
+		
+		public function testUpdateTimer():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {}, 2, 2);
+			assertEquals(2, timerSet.timers[0].timer);
+			timerSet.update(1);
+			assertEquals(1, timerSet.timers[0].timer);
+			assertEquals(2, timerSet.timers[0].repeat);
+			assertTrue(timerSet.timers[0].alive);
+			assertTrue(timerSet.timers[0].active);
+		}
+		
+		public function testUpdateTimerToZero():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {}, 2, 2);
+			assertEquals(2, timerSet.timers[0].timer);
+			timerSet.update(2);
+			assertEquals(1, timerSet.timers[0].timer);
+			assertEquals(1, timerSet.timers[0].repeat);
+			assertTrue(timerSet.timers[0].alive);
+			assertTrue(timerSet.timers[0].active);
+		}
+		
+		public function testUpdateTimerPastZero():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {}, 2, 2);
+			assertEquals(2, timerSet.timers[0].timer);
+			timerSet.update(2.5);
+			assertEquals(0.5, timerSet.timers[0].timer);
+			assertEquals(1, timerSet.timers[0].repeat);
+			assertTrue(timerSet.timers[0].alive);
+			assertTrue(timerSet.timers[0].active);
+		}
+		
+		public function testUpdateTimerDoublePastZero():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {}, 2, 2);
+			assertEquals(2, timerSet.timers[0].timer);
+			timerSet.update(3.5);
+			assertEquals(0.5, timerSet.timers[0].timer);
+			assertEquals(0, timerSet.timers[0].repeat);
+			assertFalse(timerSet.timers[0].alive);
+			assertFalse(timerSet.timers[0].active);
+		}
+		
+		public function testUpdateTimerPastRepeatLimit():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {}, 2, 2);
+			assertEquals(2, timerSet.timers[0].timer);
+			timerSet.update(3.5);
+			assertEquals(0.5, timerSet.timers[0].timer);
+			assertEquals(0, timerSet.timers[0].repeat);
+			assertFalse(timerSet.timers[0].alive);
+			assertFalse(timerSet.timers[0].active);
+			timerSet.update(3.5);
+			assertEquals(0.5, timerSet.timers[0].timer);
+			assertEquals(0, timerSet.timers[0].repeat);
+			assertFalse(timerSet.timers[0].alive);
+			assertFalse(timerSet.timers[0].active);
+		}
+		
+		public function testCallbackCalled():void {
+			timerSet = new AxTimerSet;
+			var testInt:uint = 0;
+			timerSet.add(1, function():void { testInt++; }, 5);
+			assertEquals(0, testInt);
+			timerSet.update(0.5);
+			assertEquals(0, testInt);
+			timerSet.update(0.5);
+			assertEquals(1, testInt);
+			timerSet.update(2.5);
+			assertEquals(3, testInt);
+			timerSet.update(0.5);
+			assertEquals(4, testInt);
+			timerSet.update(5);
+			assertEquals(5, testInt);
+			timerSet.update(5);
+			assertEquals(5, testInt);
+		}
+		
+		//todo: dead tests, size, clear
 	}
 }
