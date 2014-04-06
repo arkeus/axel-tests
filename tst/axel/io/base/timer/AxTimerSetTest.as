@@ -112,6 +112,30 @@ package axel.io.base.timer {
 			assertEquals(5, testInt);
 		}
 		
-		//todo: dead tests, size, clear
+		public function testSize():void {
+			timerSet = new AxTimerSet;
+			assertNull(timerSet.timers);
+			assertEquals(0, timerSet.size);
+			timerSet.add(1, function():void {}, 5);
+			assertNotNull(timerSet.timers);
+			assertEquals(1, timerSet.size);
+			timerSet.add(1, function():void {}, 5);
+			assertEquals(2, timerSet.size);
+		}
+		
+		public function testClear():void {
+			timerSet = new AxTimerSet;
+			timerSet.add(1, function():void {}, 5);
+			timerSet.add(1, function():void {}, 5);
+			assertEquals(2, timerSet.timers.length);
+			assertEquals(0, timerSet.timersTemp.length);
+			assertEquals(2, timerSet.size);
+			timerSet.clear();
+			assertEquals(0, timerSet.timers.length);
+			assertEquals(0, timerSet.timersTemp.length);
+			assertEquals(0, timerSet.size);
+		}
+		
+		//todo: dead tests
 	}
 }
