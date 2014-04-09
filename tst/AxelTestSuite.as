@@ -8,6 +8,7 @@ package {
 	import axel.io.base.AxVectorTest;
 	import axel.io.base.timer.AxTimerSetTest;
 	import axel.io.base.timer.AxTimerTest;
+	import axel.io.input.AxInputTest;
 	
 	import io.axel.pool.AxPoolListTest;
 	import io.axel.pool.AxPoolNodeTest;
@@ -26,6 +27,8 @@ package {
 			// io.axel.base.timer
 			addTest(new AxTimerTest);
 			addTest(new AxTimerSetTest);
+			// io.axel.input
+			addTest(new AxInputTest);
 			// io.axel.pool
 			addTest(new AxPoolNodeTest);
 			addTest(new AxPoolListTest);
