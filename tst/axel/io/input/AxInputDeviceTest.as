@@ -1,17 +1,17 @@
 package axel.io.input {
 	import asunit.framework.TestCase;
 	
-	import io.axel.input.AxInput;
+	import io.axel.input.AxInputDevice;
 
-	public class AxInputTest extends TestCase {
-		private var input:AxInput;
+	public class AxInputDeviceTest extends TestCase {
+		private var input:AxInputDevice;
 		
 		public function testConstruction():void {
-			input = new AxInput(5);
+			input = new AxInputDevice(5);
 		}
 		
 		public function testInitialState():void {
-			input = new AxInput(2);
+			input = new AxInputDevice(2);
 			assertFalse(input.down(0));
 			assertFalse(input.down(1));
 			assertThrows(RangeError, function():void {

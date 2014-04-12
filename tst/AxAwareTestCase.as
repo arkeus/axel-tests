@@ -30,6 +30,9 @@ package {
 		}
 
 		protected function advance(dt:Number, ... entities:Array):void {
+			var ms:uint = dt * 1000;
+			Ax.then += ms;
+			Ax.now += ms;
 			Ax.dt = dt;
 			for each (var entity:AxEntity in entities) {
 				entity.update();
