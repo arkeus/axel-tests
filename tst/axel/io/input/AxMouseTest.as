@@ -1,9 +1,6 @@
 package axel.io.input {
 	import flash.events.MouseEvent;
 	
-	import asunit.framework.TestCase;
-	
-	import io.axel.Ax;
 	import io.axel.input.AxMouse;
 	import io.axel.input.AxMouseButton;
 
