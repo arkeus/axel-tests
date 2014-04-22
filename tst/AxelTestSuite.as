@@ -1,15 +1,15 @@
 package {
 	import asunit.framework.TestSuite;
 	
-	import axel.io.base.AxEntityTest;
-	import axel.io.base.AxGroupTest;
-	import axel.io.base.AxPointTest;
-	import axel.io.base.AxRectTest;
-	import axel.io.base.AxVectorTest;
-	import axel.io.base.timer.AxTimerSetTest;
-	import axel.io.base.timer.AxTimerTest;
-	import axel.io.input.AxInputDeviceTest;
-	import axel.io.input.AxMouseTest;
+	import io.axel.base.AxEntityTest;
+	import io.axel.base.AxGroupTest;
+	import io.axel.base.AxPointTest;
+	import io.axel.base.AxRectTest;
+	import io.axel.base.AxVectorTest;
+	import io.axel.timer.AxTimerSetTest;
+	import io.axel.timer.AxTimerTest;
+	import io.axel.input.AxInputDeviceTest;
+	import io.axel.input.AxMouseTest;
 	
 	import io.axel.pool.AxPoolListTest;
 	import io.axel.pool.AxPoolNodeTest;

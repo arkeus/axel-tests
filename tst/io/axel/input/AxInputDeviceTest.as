@@ -1,7 +1,6 @@
-package axel.io.input {
+package io.axel.input {
 	import asunit.framework.TestCase;
 	
-	import io.axel.input.AxInputDevice;
 
 	public class AxInputDeviceTest extends TestCase {
 		private var input:AxInputDevice;

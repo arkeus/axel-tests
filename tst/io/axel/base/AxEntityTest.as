@@ -1,6 +1,4 @@
-package axel.io.base {
-	import io.axel.base.AxEntity;
-	import io.axel.base.AxRect;
+package io.axel.base {
 
 	public class AxEntityTest extends AxAwareTestCase {
 		private var entity:AxEntity;

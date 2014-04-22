@@ -1,9 +1,4 @@
-package axel.io.base {
-	import io.axel.base.AxEntity;
-	import io.axel.base.AxGroup;
-	import io.axel.base.AxModel;
-	import io.axel.base.AxPoint;
-	import io.axel.base.AxRect;
+package io.axel.base {
 	import io.axel.sprite.AxSprite;
 
 	public class AxGroupTest extends AxAwareTestCase {

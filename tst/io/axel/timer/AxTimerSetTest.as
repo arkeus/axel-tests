@@ -1,4 +1,4 @@
-package axel.io.base.timer {
+package io.axel.timer {
 	import asunit.framework.TestCase;
 	
 	import io.axel.base.timer.AxTimerSet;

@@ -1,7 +1,6 @@
-package axel.io.base {
+package io.axel.base {
 	import asunit.framework.TestCase;
 	
-	import io.axel.base.AxVector;
 
 	public class AxVectorTest extends TestCase {
 		private var vector:AxVector;

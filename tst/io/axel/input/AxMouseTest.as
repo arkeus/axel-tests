@@ -1,8 +1,6 @@
-package axel.io.input {
+package io.axel.input {
 	import flash.events.MouseEvent;
 	
-	import io.axel.input.AxMouse;
-	import io.axel.input.AxMouseButton;
 
 	public class AxMouseTest extends AxAwareTestCase {
 		private var mouse:AxMouse;

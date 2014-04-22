@@ -1,6 +1,5 @@
-package axel.io.base {
+package io.axel.base {
 	import io.axel.Ax;
-	import io.axel.base.AxRect;
 	import io.axel.input.AxMouseButton;
 
 	public class AxRectTest extends AxAwareTestCase {
