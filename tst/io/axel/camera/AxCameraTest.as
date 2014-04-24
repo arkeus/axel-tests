@@ -1,4 +1,6 @@
 package io.axel.camera {
+	import io.axel.Ax;
+
 	public class AxCameraTest extends AxAwareTestCase {
 		private var camera:AxCamera;
 		
@@ -13,6 +15,14 @@ package io.axel.camera {
 			assertNotNull(camera.view);
 			assertNotNull(camera.baseProjection);
 			assertNotNull(camera.effectOffset);
+		}
+		
+		public function testInitialize():void {
+			camera = new AxCamera;
+			assertNotNull(camera.sprite);
+			assertEquals(0, camera.sprite.alpha);
+			assertEquals(Ax.viewWidth, camera.sprite.width);
+			assertEquals(Ax.viewHeight, camera.sprite.height);
 		}
 	}
 }
