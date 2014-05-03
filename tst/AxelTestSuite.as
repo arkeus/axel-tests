@@ -6,14 +6,14 @@ package {
 	import io.axel.base.AxPointTest;
 	import io.axel.base.AxRectTest;
 	import io.axel.base.AxVectorTest;
-	import io.axel.timer.AxTimerSetTest;
-	import io.axel.timer.AxTimerTest;
+	import io.axel.camera.AxCameraTest;
 	import io.axel.input.AxInputDeviceTest;
 	import io.axel.input.AxMouseTest;
-	
 	import io.axel.pool.AxPoolListTest;
 	import io.axel.pool.AxPoolNodeTest;
 	import io.axel.pool.AxPoolTest;
+	import io.axel.timer.AxTimerSetTest;
+	import io.axel.timer.AxTimerTest;
 
 	public class AxelTestSuite extends TestSuite {
 		public function AxelTestSuite() {
@@ -25,6 +25,8 @@ package {
 			addTest(new AxVectorTest);
 			addTest(new AxEntityTest);
 			addTest(new AxGroupTest);
+			// io.axel.camera
+			addTest(new AxCameraTest);
 			// io.axel.base.timer
 			addTest(new AxTimerTest);
 			addTest(new AxTimerSetTest);

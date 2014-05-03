@@ -19,6 +19,7 @@ package io.axel.camera {
 		
 		public function testInitialize():void {
 			camera = new AxCamera;
+			camera.initialize();
 			assertNotNull(camera.sprite);
 			assertEquals(0, camera.sprite.alpha);
 			assertEquals(Ax.viewWidth, camera.sprite.width);
