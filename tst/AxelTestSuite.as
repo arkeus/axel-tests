@@ -7,6 +7,7 @@ package {
 	import io.axel.base.AxRectTest;
 	import io.axel.base.AxVectorTest;
 	import io.axel.camera.AxCameraTest;
+	import io.axel.camera.effect.AxCameraFadeEffectTest;
 	import io.axel.input.AxInputDeviceTest;
 	import io.axel.input.AxMouseTest;
 	import io.axel.pool.AxPoolListTest;
@@ -27,6 +28,8 @@ package {
 			addTest(new AxGroupTest);
 			// io.axel.camera
 			addTest(new AxCameraTest);
+			// io.axel.camera.effect
+			addTest(new AxCameraFadeEffectTest);
 			// io.axel.base.timer
 			addTest(new AxTimerTest);
 			addTest(new AxTimerSetTest);
