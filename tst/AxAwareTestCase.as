@@ -38,5 +38,13 @@ package {
 				entity.update();
 			}
 		}
+
+		protected function draw(... entities:Array):void {
+			TestAx.preDraw();
+			for each (var entity:AxEntity in entities) {
+				entity.draw();
+			}
+			TestAx.postDraw();
+		}
 	}
 }

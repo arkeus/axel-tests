@@ -14,5 +14,13 @@ package {
 			Ax.now = getTimer() + 1;
 			Ax.then = Ax.now - 1;
 		}
+		
+		public static function preDraw():void {
+			context.clear();
+		}
+		
+		public static function postDraw():void {
+			context.present();
+		}
 	}
 }
