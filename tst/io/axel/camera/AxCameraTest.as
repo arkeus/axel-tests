@@ -74,5 +74,17 @@ package io.axel.camera {
 			assertEquals(1, camera.sprite.x);
 			assertEquals(1, camera.sprite.y);
 		}
+		
+		public function testReset():void {
+			camera = new AxCamera;
+			camera.initialize();
+			camera.follow(new AxEntity);
+			camera.x = 5;
+			camera.y = 5;
+			camera.reset();
+			assertEquals(0, camera.x);
+			assertEquals(0, camera.x);
+			assertNull(camera.target);
+		}
 	}
 }
