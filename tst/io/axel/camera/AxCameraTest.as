@@ -86,5 +86,16 @@ package io.axel.camera {
 			assertEquals(0, camera.x);
 			assertNull(camera.target);
 		}
+		
+		public function testCalculateZoomMatrix():void {
+			camera = new AxCamera;
+			camera.initialize();
+			Ax.width = 4;
+			Ax.height = 6;
+			Ax.zoom = 2;
+			camera.calculateZoomMatrix();
+			assertEquals(2, Ax.viewWidth);
+			assertEquals(3, Ax.viewHeight);
+		}
 	}
 }
