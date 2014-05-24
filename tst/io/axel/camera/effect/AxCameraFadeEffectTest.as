@@ -1,10 +1,8 @@
 package io.axel.camera.effect {
-	import asunit.framework.TestCase;
-	
 	import io.axel.camera.AxCamera;
 	import io.axel.render.AxColor;
 
-	public class AxCameraFadeEffectTest extends TestCase {
+	public class AxCameraFadeEffectTest extends AxAwareTestCase {
 		private var effect:AxCameraFadeEffect;
 		private var camera:AxCamera;
 		private var callback:Function;
@@ -56,6 +54,38 @@ package io.axel.camera.effect {
 			assertEquals(1, camera.sprite.color.red);
 			assertEquals(1, camera.sprite.color.green);
 			assertEquals(0, camera.sprite.color.blue);
+		}
+		
+		public function testFadeNonZeroDeltas():void {
+			camera.sprite.color = AxColor.fromHex(0x77777777);
+			effect.fade(1, 0xffffffff, camera, callback);
+			assertEquals((0xff - 0x77) / 0xff, effect.redDelta);
+			assertEquals((0xff - 0x77) / 0xff, effect.greenDelta);
+			assertEquals((0xff - 0x77) / 0xff, effect.blueDelta);
+			assertEquals((0xff - 0x77) / 0xff, effect.alphaDelta);
+			assertEquals(0x77 / 0xff, camera.sprite.color.red);
+			assertEquals(0x77 / 0xff, camera.sprite.color.green);
+			assertEquals(0x77 / 0xff, camera.sprite.color.blue);
+		}
+		
+		public function testFadeUpdate():void {
+			camera.sprite.color = new AxColor(0.5, 0.5, 0.5, 0.5);
+			var complete:Boolean = false;
+			callback = function():void { complete = true; };
+			effect.fade(1, 0xffffffff, camera, callback);
+			advance(0.5);
+			effect.update(camera);
+			assertEquals(0.75, camera.sprite.color.red);
+			assertEquals(0.75, camera.sprite.color.green);
+			assertEquals(0.75, camera.sprite.color.blue);
+			assertEquals(0.75, camera.sprite.color.alpha);
+			assertFalse(complete);
+			effect.update(camera);
+			assertEquals(1, camera.sprite.color.red);
+			assertEquals(1, camera.sprite.color.green);
+			assertEquals(1, camera.sprite.color.blue);
+			assertEquals(1, camera.sprite.color.alpha);
+			assertTrue(complete);
 		}
 	}
 }
