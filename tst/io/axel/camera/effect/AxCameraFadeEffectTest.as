@@ -45,5 +45,17 @@ package io.axel.camera.effect {
 			assertEquals(0, effect.blueDelta);
 			assertEquals(-1, effect.alphaDelta);
 		}
+		
+		public function testFadeFromZeroAlpha():void {
+			camera.sprite.color = AxColor.fromHex(0x00ff00ff);
+			effect.fade(1, 0xffffff00, camera, callback);
+			assertEquals(0, effect.redDelta);
+			assertEquals(0, effect.greenDelta);
+			assertEquals(0, effect.blueDelta);
+			assertEquals(1, effect.alphaDelta);
+			assertEquals(1, camera.sprite.color.red);
+			assertEquals(1, camera.sprite.color.green);
+			assertEquals(0, camera.sprite.color.blue);
+		}
 	}
 }
