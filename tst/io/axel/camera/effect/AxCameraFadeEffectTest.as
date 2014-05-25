@@ -87,5 +87,18 @@ package io.axel.camera.effect {
 			assertEquals(1, camera.sprite.color.alpha);
 			assertTrue(complete);
 		}
+		
+		public function testDeactivate():void {
+			camera.sprite.color = new AxColor(0.5, 0.5, 0.5, 0.5);
+			var complete:Boolean = false;
+			callback = function():void { complete = true; };
+			effect.fade(1, 0xffffffff, camera, callback);
+			effect.deactivate();
+			assertEquals(1, camera.sprite.color.red);
+			assertEquals(1, camera.sprite.color.green);
+			assertEquals(1, camera.sprite.color.blue);
+			assertEquals(1, camera.sprite.color.alpha);
+			assertTrue(complete);
+		}
 	}
 }
