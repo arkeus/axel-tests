@@ -1,9 +1,17 @@
 package io.axel.camera.effect {
-	import asunit.framework.TestCase;
+	import io.axel.camera.AxCamera;
+	
 
-	public class AxCameraShakeEffectTest extends TestCase {
-		public function testConstruction():void {
-			
+	public class AxCameraShakeEffectTest extends AxAwareTestCase {
+		private var effect:AxCameraFadeEffect;
+		private var camera:AxCamera;
+		private var callback:Function;
+		
+		override protected function setUp():void {
+			effect = new AxCameraFadeEffect;
+			camera = new AxCamera;
+			camera.initialize();
+			callback = function():void {};
 		}
 	}
 }
