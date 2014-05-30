@@ -20,5 +20,15 @@ package io.axel.camera.effect {
 			assertFalse(effect.ease);
 			assertTrue(isNaN(effect.intensity));
 		}
+		
+		public function testShake():void {
+			effect.shake(1, 2, callback, true, AxCamera.HORIZONTAL);
+			assertEquals(1, effect.duration);
+			assertEquals(1, effect.remaining);
+			assertEquals(callback, effect.callback);
+			assertEquals(2, effect.intensity);
+			assertTrue(effect.ease);
+			assertEquals(AxCamera.HORIZONTAL, effect.axes);
+		}
 	}
 }
