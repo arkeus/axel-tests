@@ -40,5 +40,25 @@ package io.axel.camera.effect {
 			assertEquals(1, effect.duration);
 			assertEquals(0.5, effect.remaining);
 		}
+		
+		public function testUpdateVertical():void {
+			effect.shake(1, 5, callback, true, AxCamera.VERTICAL);
+			advance(0.5);
+			effect.update(camera);
+			assertEquals(0, effect.x);
+			assertTrue(effect.y >= -5 && effect.y <= 5);
+			assertEquals(1, effect.duration);
+			assertEquals(0.5, effect.remaining);
+		}
+		
+		public function testUpdateBoth():void {
+			effect.shake(1, 5, callback, true, AxCamera.BOTH_AXES);
+			advance(0.5);
+			effect.update(camera);
+			assertTrue(effect.x >= -5 && effect.x <= 5);
+			assertTrue(effect.y >= -5 && effect.y <= 5);
+			assertEquals(1, effect.duration);
+			assertEquals(0.5, effect.remaining);
+		}
 	}
 }
