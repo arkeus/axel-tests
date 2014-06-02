@@ -60,5 +60,21 @@ package io.axel.camera.effect {
 			assertEquals(1, effect.duration);
 			assertEquals(0.5, effect.remaining);
 		}
+		
+		public function testDeactivate():void {
+			var complete:Boolean = false;
+			var callback:Function = function():void { complete = true; }
+			effect.shake(1, 5, callback, true, AxCamera.BOTH_AXES);
+			advance(0.5);
+			effect.update(camera);
+			assertTrue(effect.x >= -5 && effect.x <= 5);
+			assertTrue(effect.y >= -5 && effect.y <= 5);
+			assertTrue(effect.active);
+			effect.deactivate();
+			assertEquals(0, effect.x);
+			assertEquals(0, effect.y);
+			assertFalse(effect.active);
+			assertTrue(complete);
+		}
 	}
 }
