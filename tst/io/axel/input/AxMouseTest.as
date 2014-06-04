@@ -4,9 +4,12 @@ package io.axel.input {
 
 	public class AxMouseTest extends AxAwareTestCase {
 		private var mouse:AxMouse;
+		
+		override protected function setUp():void {
+			mouse = new AxMouse;
+		}
 
 		public function testConstructor():void {
-			mouse = new AxMouse;
 			assertEquals(1, mouse.size());
 			assertEquals(0, mouse.x);
 			assertEquals(0, mouse.y);
@@ -15,7 +18,6 @@ package io.axel.input {
 		}
 		
 		public function testMouseState():void {
-			mouse = new AxMouse;
 			assertFalse(mouse.down(AxMouseButton.LEFT));
 			assertFalse(mouse.pressed(AxMouseButton.LEFT));
 			assertFalse(mouse.released(AxMouseButton.LEFT));
