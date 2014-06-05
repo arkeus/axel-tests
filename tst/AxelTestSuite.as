@@ -11,6 +11,7 @@ package {
 	import io.axel.camera.effect.AxCameraFadeEffectTest;
 	import io.axel.camera.effect.AxCameraShakeEffectTest;
 	import io.axel.input.AxInputDeviceTest;
+	import io.axel.input.AxKeyboardTest;
 	import io.axel.input.AxMouseTest;
 	import io.axel.pool.AxPoolListTest;
 	import io.axel.pool.AxPoolNodeTest;
@@ -40,6 +41,7 @@ package {
 			// io.axel.input
 			addTest(new AxInputDeviceTest);
 			addTest(new AxMouseTest);
+			addTest(new AxKeyboardTest);
 			// io.axel.pool
 			addTest(new AxPoolNodeTest);
 			addTest(new AxPoolListTest);
