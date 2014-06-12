@@ -9,7 +9,20 @@ package io.axel.sound {
 		}
 		
 		public function testConstructor():void {
-			
+			assertNull(sound.soundClass);
+			assertNull(sound.sound);
+			assertNull(sound.soundChannel);
+			assertNull(sound.soundTransform);
+			assertNull(sound.manager);
+			assertTrue(isNaN(sound.requestedVolume));
+			assertEquals(0, sound.loops);
+			assertTrue(isNaN(sound.start));
+			assertTrue(isNaN(sound.deltaVolume));
+			assertTrue(isNaN(sound.targetVolume));
+			assertTrue(isNaN(sound.requestedPanning));
+			assertTrue(isNaN(sound.deltaPan));
+			assertTrue(isNaN(sound.targetPan));
+			assertFalse(sound.destroyOnComplete);
 		}
 	}
 }
