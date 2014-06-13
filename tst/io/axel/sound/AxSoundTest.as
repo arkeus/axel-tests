@@ -24,5 +24,13 @@ package io.axel.sound {
 			assertTrue(isNaN(sound.targetPan));
 			assertFalse(sound.destroyOnComplete);
 		}
+		
+		public function testCreate():void {
+			sound.create(Object);
+			assertEquals(Object, sound.soundClass);
+			assertNotNull(sound.soundTransform);
+			assertNotNull(sound.sound);
+			assertTrue(sound.sound is Object);
+		}
 	}
 }
