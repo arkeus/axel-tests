@@ -16,6 +16,7 @@ package {
 	import io.axel.pool.AxPoolListTest;
 	import io.axel.pool.AxPoolNodeTest;
 	import io.axel.pool.AxPoolTest;
+	import io.axel.sound.AxSoundTest;
 	import io.axel.timer.AxTimerSetTest;
 	import io.axel.timer.AxTimerTest;
 
@@ -46,6 +47,8 @@ package {
 			addTest(new AxPoolNodeTest);
 			addTest(new AxPoolListTest);
 			addTest(new AxPoolTest);
+			// io.axel.sound
+			addTest(new AxSoundTest);
 		}
 	}
 }

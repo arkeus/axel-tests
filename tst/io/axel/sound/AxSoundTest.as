@@ -3,9 +3,11 @@ package io.axel.sound {
 
 	public class AxSoundTest extends TestCase {
 		private var sound:AxSound;
+		private var manager:AxAudioManager;
 		
 		override protected function setUp():void {
 			sound = new AxSound;
+			manager = new AxAudioManager;
 		}
 		
 		public function testConstructor():void {
@@ -26,11 +28,26 @@ package io.axel.sound {
 		}
 		
 		public function testCreate():void {
-			sound.create(Object);
-			assertEquals(Object, sound.soundClass);
+			sound.create(AxTestSound);
+			assertEquals(AxTestSound, sound.soundClass);
 			assertNotNull(sound.soundTransform);
 			assertNotNull(sound.sound);
 			assertTrue(sound.sound is Object);
+		}
+		
+		public function testInitialize():void {
+			sound.create(AxTestSound);
+			sound.initialize(manager, 0.5, 2, 2, 1);
+			assertEquals(manager, sound.manager);
+			assertEquals(0.5, sound.requestedVolume);
+			assertEquals(2, sound.loops);
+			assertEquals(2, sound.start);
+			assertEquals(1, sound.requestedPanning);
+			assertNotNull(sound.soundTransform);
+			assertEquals(0.5, sound.targetVolume);
+			assertEquals(1, sound.targetPan);
+			assertEquals(0, sound.deltaPan);
+			assertEquals(0, sound.deltaVolume);
 		}
 	}
 }
