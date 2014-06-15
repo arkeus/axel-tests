@@ -49,5 +49,13 @@ package io.axel.sound {
 			assertEquals(0, sound.deltaPan);
 			assertEquals(0, sound.deltaVolume);
 		}
+		
+		public function testSetVolumeTooLow():void {
+			sound.create(AxTestSound);
+			sound.initialize(manager, 0.5, 2, 2, 1);
+			assertThrows(ArgumentError, function():void {
+				sound.volume = -1;
+			});
+		}
 	}
 }
