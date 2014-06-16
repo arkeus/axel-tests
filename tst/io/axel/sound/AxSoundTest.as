@@ -57,5 +57,13 @@ package io.axel.sound {
 				sound.volume = -1;
 			});
 		}
+		
+		public function testSetVolumeTooHigh():void {
+			sound.create(AxTestSound);
+			sound.initialize(manager, 0.5, 2, 2, 1);
+			assertThrows(ArgumentError, function():void {
+				sound.volume = 2;
+			});
+		}
 	}
 }
